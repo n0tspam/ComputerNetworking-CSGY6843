@@ -1,7 +1,6 @@
 # import socket module
 from socket import *
 import sys  # In order to terminate the program
-import time
 
 
 def webServer(port=13331):
@@ -37,7 +36,6 @@ def webServer(port=13331):
             connectionSocket.send(bytes(
                 "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n", "UTF-8"))
             # Fill in end
-            time.sleep(5)
             # Close client socket
             # Fill in start
             connectionSocket.close()
