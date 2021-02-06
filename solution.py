@@ -1,7 +1,6 @@
 # import socket module
 from socket import *
-import sys
-import errno  # In order to terminate the program
+import sys  # In order to terminate the program
 
 
 def webServer(port=13331):
@@ -32,15 +31,15 @@ def webServer(port=13331):
         except IOError as e:
             # Send response message for file not found (404)
             # Fill in start
-            if e.errno == errno.EPIPE:
-                connectionSocket.send(
-                    bytes("HTTP/1.1 404 Not Found\r\n\r\n", "UTF-8"))
-                connectionSocket.send(bytes(
-                    "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n", "UTF-8"))
+
+            # connectionSocket.send(
+            #     bytes("HTTP/1.1 404 Not Found\r\n\r\n", "UTF-8"))
+            connectionSocket.send(bytes(
+                "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n", "UTF-8"))
             # Fill in end
             # Close client socket
             # Fill in start
-                connectionSocket.close()
+            connectionSocket.close()
             # Fill in end
 
     serverSocket.close()
