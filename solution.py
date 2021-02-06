@@ -1,6 +1,7 @@
 # import socket module
 from socket import *
-import sys  # In order to terminate the program
+import sys
+import errno  # In order to terminate the program
 
 
 def webServer(port=13331):
