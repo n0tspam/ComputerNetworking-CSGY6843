@@ -23,9 +23,8 @@ def webServer(port=13331):
             connectionSocket.send('HTTP/1.1 200 OK\r\n'.encode())
             # Fill in end
             # Send the content of the requested file to the client
-            for i in range(0, len(outputdata)):
-                connectionSocket.send(bytes(outputdata[i], "UTF-8"))
-
+            connectionSocket.sendall(bytes(outputdata, "UTF-8"))
+            print(outputdata)
             connectionSocket.send("\r\n".encode())
             connectionSocket.close()
         except IOError as e:
