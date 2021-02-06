@@ -28,17 +28,18 @@ def webServer(port=13331):
 
             connectionSocket.send("\r\n".encode())
             connectionSocket.close()
-        except IOError:
+        except IOError as e:
             # Send response message for file not found (404)
             # Fill in start
-            connectionSocket.send(
-                bytes("HTTP/1.1 404 Not Found\r\n\r\n", "UTF-8"))
-            connectionSocket.send(bytes(
-                "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n", "UTF-8"))
+            if e.errno == errno.EPIPE:
+                connectionSocket.send(
+                    bytes("HTTP/1.1 404 Not Found\r\n\r\n", "UTF-8"))
+                connectionSocket.send(bytes(
+                    "<html><head></head><body><h1>404 Not Found</h1></body></html>\r\n", "UTF-8"))
             # Fill in end
             # Close client socket
             # Fill in start
-            connectionSocket.close()
+                connectionSocket.close()
             # Fill in end
 
     serverSocket.close()
