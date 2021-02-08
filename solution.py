@@ -4,9 +4,9 @@ from socket import *
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
 
-    mailserver = (mailserver, port)  # Fill in start #Fill in end
+    mail = (mailserver, port)  # Fill in start #Fill in end
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver)
+    clientSocket.connect(mail)
 
     recv = clientSocket.recv(1024).decode()
     if recv[:3] != '220':
