@@ -150,4 +150,4 @@ def ping(host, timeout=1):
 
 
 if __name__ == '__main__':
-    ping("google.com")
+    ping("127.0.0.1")
