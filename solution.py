@@ -118,6 +118,7 @@ def get_route(hostname):
                     types, code, checksum, packetID, sequence = struct.unpack(
                         "bbHHh", icmpHeader)
                 except herror:  # if the host does not provide a hostname
+                    continue
                     # Fill in start
                     # Fill in end
 
@@ -155,5 +156,3 @@ def get_route(hostname):
             finally:
                 return tracelist2
                 mySocket.close()
-
-
