@@ -118,8 +118,9 @@ def get_route(hostname):
                     types, code, checksum, packetID, sequence = struct.unpack(
                         "bbHHh", icmpHeader)
                 except herror:  # if the host does not provide a hostname
-                    continue
                     # Fill in start
+
+                    print("no trace")
                     # Fill in end
 
                 if types == 11:
@@ -127,28 +128,28 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 +
                                                              bytes])[0]
                     # Fill in start
-                    print(" %d   %.0fms %s %s" %
+                    print("%d   %.0fms %s %s" %
                           (ttl, (timeReceived - t)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable"))
-                    tracelist2.append(" %d   %.0fms %s %s" %
-                                      (ttl, (timeReceived - t)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable"))
+                    tracelist2.append(["%d   %.0fms %s %s" %
+                                      (ttl, (timeReceived - t)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable")])
                     # Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
-                    print(" %d   %.0fms %s %s" %
+                    print("%d   %.0fms %s %s" %
                           (ttl, (timeReceived - t)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable"))
-                    tracelist2.append(" %d   %.0fms %s %s" %
-                                      (ttl, (timeReceived - t)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable"))
+                    tracelist2.append(["%d   %.0fms %s %s" %
+                                      (ttl, (timeReceived - t)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable")])
                     # Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     # Fill in start
-                    print(" %d   %.0fms %s %s" %
+                    print("%d   %.0fms %s %s" %
                           (ttl, (timeReceived - timeSent)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable"))
-                    tracelist2.append(" %d   %.0fms %s %s" %
-                                      (ttl, (timeReceived - timeSent)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable"))
+                    tracelist2.append(["%d   %.0fms %s %s" %
+                                      (ttl, (timeReceived - timeSent)*1000, addr[0], hostnameAddr if hostnameAddr else "not returnable")])
                     # Fill in end
                 else:
                     # Fill in start
