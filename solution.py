@@ -150,15 +150,3 @@ def get_route(hostname):
                     break
             finally:
                 mySocket.close()
-
-
-print("--------------------------------------------")
-print('www.youtube.com')
-print("--------------------------------------------")
-get_route("www.youtube.com")  # USA - North America
-print("--------------------------------------------")
-print('www.sweden.se')
-print("--------------------------------------------")
-get_route('www.sweden.se')  # Sweden - Europe
-print("--------------------------------------------")
-get_route('www.nyu.edu')  # Sweden - Europe
