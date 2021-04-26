@@ -85,7 +85,7 @@ def get_route(hostname):
 
                 if whatReady[0] == []:  # Timeout
                     print("{}    *    Request timed out.".format(ttl))
-                    tracelist2.append([ttl, "*", "Request timed out."])
+                    tracelist2.append([str(ttl), "*", "Request timed out."])
 
                 recvPacket, addr = mySocket.recvfrom(1024)
                 timeReceived = time.time()
@@ -93,9 +93,10 @@ def get_route(hostname):
 
                 if timeLeft <= 0:
                     print("{}    *    Request timed out.".format(ttl))
-                    tracelist2.append([ttl, "*", "Request timed out."])
+                    tracelist2.append([str(ttl), "*", "Request timed out."])
 
             except timeout:
+                tracelist2.append([str(ttl), "*", "Request timed out."])
                 continue
 
             else:
@@ -118,7 +119,7 @@ def get_route(hostname):
                     print("{}    {}ms {} {}".format(
                         ttl, int((timeReceived - t)*1000), addr[0], hopHostname))
                     tracelist1 = [
-                        ttl, int((timeReceived - t)*1000), addr[0], hopHostname]
+                        str(ttl), str(int((timeReceived - t)*1000)), addr[0], hopHostname]
                     tracelist2.append(tracelist1)
                     # print(tracelist2)
 
@@ -128,7 +129,7 @@ def get_route(hostname):
                     print("{}    {}ms {} {}".format(
                         ttl, int((timeReceived - t)*1000), addr[0], hopHostname))
                     tracelist1 = [
-                        ttl, int((timeReceived - t)*1000), addr[0], hopHostname]
+                        str(ttl), str(int((timeReceived - t)*1000)), addr[0], hopHostname]
                     tracelist2.append(tracelist1)
                     # print(tracelist2)
 
@@ -138,13 +139,15 @@ def get_route(hostname):
                     print("{}    {}ms,{},{}".format(
                         ttl, int((timeReceived - t)*1000), addr[0], hopHostname))
                     tracelist1 = [
-                        ttl, int((timeReceived - t)*1000), addr[0], hopHostname]
+                        str(ttl), str(int((timeReceived - t)*1000)), addr[0], hopHostname]
                     tracelist2.append(tracelist1)
 
-                    # print(tracelist2)
+                    print(tracelist2)
                     return tracelist2
                 else:
                     print("error")
                     break
             finally:
+                
+                #print('tracelist2', tracelist2)
                 mySocket.close()
