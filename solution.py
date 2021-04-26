@@ -66,9 +66,9 @@ def get_route(hostname):
 
     for ttl in range(1, MAX_HOPS):
         for tries in range(TRIES):
-            destAddr = socket.gethostbyname(hostname)
+            destAddr = gethostbyname(hostname)
 
-            icmp = socket.getprotobyname("icmp")
+            icmp = getprotobyname("icmp")
             # mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
             mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, icmp)
             # Fill in end
@@ -149,4 +149,5 @@ def get_route(hostname):
                     break
             finally:
                 mySocket.close()
+
 
