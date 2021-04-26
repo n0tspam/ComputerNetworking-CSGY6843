@@ -49,7 +49,7 @@ def build_packet():
 
     myChecksum = checksum(header + data)
     if sys.platform == 'darwin':
-        myChecksum = socket.htons(myChecksum) & 0xffff
+        myChecksum = htons(myChecksum) & 0xffff
 
     else:
         myChecksum = htons(myChecksum)
@@ -70,11 +70,11 @@ def get_route(hostname):
 
             icmp = getprotobyname("icmp")
             # mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
-            mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, icmp)
+            mySocket = socket(AF_INET, SOCK_DGRAM, icmp)
             # Fill in end
 
-            mySocket.setsockopt(socket.IPPROTO_IP,
-                                socket.IP_TTL, struct.pack('I', ttl))
+            mySocket.setsockopt(IPPROTO_IP,
+                                IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
             try:
                 d = build_packet()
@@ -96,7 +96,7 @@ def get_route(hostname):
                     print("{}    *    Request timed out.".format(ttl))
                     tracelist2.append([ttl, "*", "Request timed out."])
 
-            except socket.timeout:
+            except timeout:
                 continue
 
             else:
@@ -149,5 +149,3 @@ def get_route(hostname):
                     break
             finally:
                 mySocket.close()
-
-
