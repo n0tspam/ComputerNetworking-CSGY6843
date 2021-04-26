@@ -69,8 +69,7 @@ def get_route(hostname):
             destAddr = gethostbyname(hostname)
 
             icmp = getprotobyname("icmp")
-            # mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
-            mySocket = socket(AF_INET, SOCK_DGRAM, icmp)
+            mySocket = socket(AF_INET, SOCK_RAW, icmp)
             # Fill in end
 
             mySocket.setsockopt(IPPROTO_IP,
